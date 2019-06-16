@@ -1,11 +1,11 @@
 <template>
     <div>
-        
+        Хеш
     </div>
 </template>
 
 <script>
-    export default {
+    module.exports = {
         name: "hash"
     };
 </script>

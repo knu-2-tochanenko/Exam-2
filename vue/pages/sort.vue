@@ -1,11 +1,11 @@
 <template>
     <div>
-        
+        Сортировки
     </div>
 </template>
 
 <script>
-    export default {
+    module.exports = {
         name: "sort"
     };
 </script>

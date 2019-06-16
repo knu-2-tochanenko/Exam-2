@@ -1,18 +1,11 @@
 <template>
     <div>
         <nav class="page-nav">
-            <router-link class="menu-link" :to="{ name: 'lists'}"
-                         v-on:click="changeTree('lists')">Lists
-            </router-link>
-            <router-link class="menu-link" :to="{ name: 'trees'}"
-                         v-on:click="changeTree('trees')">Trees
-            </router-link>
-            <router-link class="menu-link" :to="{ name: 'hash'}"
-                         v-on:click="changeTree('hash')">Hash
-            </router-link>
-            <router-link class="menu-link" :to="{ name: 'sort'}"
-                         v-on:click="changeTree('sort')">Sorts
-            </router-link>
+            <router-link class="page-link" :to="{ name: 'main'}">Main</router-link>
+            <router-link class="page-link" :to="{ name: 'list'}">Lists</router-link>
+            <router-link class="page-link" :to="{ name: 'tree'}">Trees</router-link>
+            <router-link class="page-link" :to="{ name: 'hash'}">Hash</router-link>
+            <router-link class="page-link" :to="{ name: 'sort'}">Sorts</router-link>
         </nav>
         <section class="page-body">
             <router-view></router-view>
@@ -50,7 +43,7 @@
         padding: 0px 50px;
     }
 
-    .menu-link {
+    .page-link {
         display: inline-block;
         padding: 0px 16px;
         color: #212121;
@@ -61,8 +54,8 @@
         border-top-right-radius: 5px;
     }
 
-    .menu-link.active,
-    .menu-link:hover {
+    .page-link.active,
+    .page-link:hover {
         background: #fefefe;
     }
 </style>

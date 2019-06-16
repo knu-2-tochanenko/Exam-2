@@ -1,12 +1,12 @@
 <template>
     <div>
-        
+        Листы
     </div>
 </template>
 
 <script>
-    export default {
-        name: "trees"
+    module.exports = {
+        name: "list"
     };
 </script>
 
