@@ -34,14 +34,17 @@
 <style scoped>
     .page-nav {
         width: 100%;
-        background: #ffc107;
+        background: rgb(43, 194, 149);
         height: 50px;
         line-height: 50px;
         padding-top: 5px;
+        -moz-box-shadow: inset 0 -10px 10px -10px #00000088;
+        -webkit-box-shadow: inset 0 -10px 10px -10px #00000088;
+        box-shadow: inset 0 -10px 10px -10px #00000088;
     }
 
     .page-nav:first-child:before {
-        content: "Awesome Tree Visualization";
+        content: "Tochanenko Vladislav";
         font-weight: 700;
         font-size: 22px;
         padding: 0px 50px;
