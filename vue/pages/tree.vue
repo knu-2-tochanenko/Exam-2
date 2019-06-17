@@ -4,6 +4,7 @@
 		<div id="container">
             <div id="graph-container"></div>
         </div>
+		<input v-model="nodevalue" type="text">
 		<button @click="addNode">New Node</button>
     </div>
 </template>
@@ -14,14 +15,15 @@
 		data: function() {
 			return {
 				count: 0,
-				s: null
+				s: null,
+				nodevalue: 0
 			}
 		},
 		methods: {
 			addNode() {
 				this.s.graph.addNode({
 					id: 'n' + this.count++,
-					label: 'Node ' + this.count,
+					label: this.nodevalue,
 					x: this.count,
 					y: 1,
 					size: 5,
