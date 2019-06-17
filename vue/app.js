@@ -7,11 +7,11 @@ var mainPage = httpVueLoader('./vue/pages/main.vue')
 var routes = [
     {
         path: "/",
-        redirect: "/main"
+        redirect: "/mainpage"
     },
     {
-        path: '/main',
-        name: 'main',
+        path: '/mainpage',
+        name: 'mainpage',
         component: mainPage
     },
     {
