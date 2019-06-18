@@ -6,7 +6,8 @@
 
 <script>
     module.exports = {
-		name: "tree"
+        name: "tree"
+    }
 </script>
 
 <style scoped>

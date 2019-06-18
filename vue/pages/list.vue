@@ -5,7 +5,7 @@
             <div id="graph-container"></div>
         </div>
 		<input v-model="nodevalue" type="text">
-		<button @click="addNode">New Node</button>
+		<button @click="addNode(nodevalue)">Add</button>
     </div>
 </template>
 
@@ -20,23 +20,40 @@
 			}
 		},
 		methods: {
-			addNode() {
+			addNode(value) {
 				this.s.graph.addNode({
 					id: 'n' + this.count++,
-					label: this.nodevalue,
+					label: value,
 					x: this.count,
 					y: 1,
 					size: 5,
-					color: '#123456'
+					color: '#D500F9'
 				});
-				this.s.graph.addEdge({
-					id: 'e' + this.count,
-					source: 'n' + (this.count - 2),
-					target: 'n' + (this.count - 1),
-					size: 2,
-					color: 'orange'
-				});
+				if (this.count > 1) {
+						this.s.graph.addEdge({
+						id: 'e' + this.count,
+						source: 'n' + (this.count - 2),
+						target: 'n' + (this.count - 1),
+						size: 2,
+						color: '#AA00FF'
+					});
+				}
 				this.s.refresh();
+			},
+			generateFromArray(array) {
+				if (array.length > 0) {
+					this.s.graph.addNode({
+						id: 'n' + this.count++,
+						label: array[0],
+						x: this.count,
+						y: Math.random() % 5,
+						size: 5,
+						color: '#D500F9'
+					});
+				}
+				for (let i = 1; i < array.length; i++) {
+					addNode(array[i]);
+				}
 			}
 		},
         mounted() {
@@ -47,15 +64,6 @@
 					},
 					container: 'graph-container'
 				})
-			this.s.graph.addNode({
-					id: 'n' + this.count++,
-					label: 'Node ' + this.count,
-					x: this.count,
-					y: 1,
-					size: 5,
-					color: 'red'
-				});
-				
         }
     };
 </script>

@@ -43,7 +43,7 @@ var router = new VueRouter({
     linkExactActiveClass: "active"
 });
 
-new Vue({
+var vm = new Vue({
     el: "#app",
     data: {
         
