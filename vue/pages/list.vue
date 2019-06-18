@@ -5,7 +5,9 @@
             <div id="graph-container"></div>
         </div>
 		<input v-model="nodevalue" type="number">
-		<button @click="addNode(nodevalue)">Add</button>
+		<button @click="addNode(nodevalue)">Add to Begin</button>
+		<button @click="addNode(nodevalue)">Add to End</button>
+		<button @click="addNode(nodevalue)">Add after Index</button>
 		<button @click="deleteNode(nodevalue)">Delete</button>
 		<button @click="findNode(nodevalue)">Find</button>
 		<button @click="changeNode(nodevalue)">Change</button>
@@ -60,12 +62,14 @@
 				this.s.refresh();
 			},
 			findNode(value) {
-
+				this.s.graph.nodes()[value].color = '#00E676'
+				this.s.refresh();
 			},
 			changeNode(value) {
-
+				let newValue = parseInt(prompt("Enter new value", 1));
 			},
 			generateFromArray(array) {
+				this.s.kill();
 				if (array.length > 0) {
 					this.s.graph.addNode({
 						id: 'n' + this.nodesCount++,
