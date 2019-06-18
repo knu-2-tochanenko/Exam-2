@@ -5,9 +5,9 @@
             <div id="graph-container"></div>
         </div>
 		<input v-model="nodevalue" type="number">
-		<button @click="addNode(nodevalue)">Add to Begin</button>
-		<button @click="addNode(nodevalue)">Add to End</button>
-		<button @click="addNode(nodevalue)">Add after Index</button>
+		<button @click="addNode_begin(nodevalue)">Add to Begin</button>
+		<button @click="addNode_end(nodevalue)">Add to End</button>
+		<button @click="addNode_index(nodevalue)">Add after Index</button>
 		<button @click="deleteNode(nodevalue)">Delete</button>
 		<button @click="findNode(nodevalue)">Find</button>
 		<button @click="changeNode(nodevalue)">Change</button>
@@ -22,16 +22,37 @@
 				nodesCount: 0,
 				edgesCount: 0,
 				s: null,
-				nodevalue: 1
+				nodevalue: 1,
+      			listView: null
 			}
 		},
 		methods: {
+			addNode_begin(value) {
+				this.generateFromArray(this.listView.addNode_begin(value));
+			},
+			addNode_end(value) {
+				this.generateFromArray(this.listView.addNode_end(value));
+			},
+			addNode_index(value) {
+				let index = this.listView.searchNode(value);
+				let afterValue = prompt("After value:", 1);
+				let result=this.listView.addNode_after(value, afterValue);
+				console.log(result);
+				this.generateFromArray(result);
+			},
+			async deleteNode(value) {
+				let index = this.listView.searchNode(value);
+				this.s.graph.nodes()[index].color = '#ff0000';
+				this.s.refresh();
+				await new Promise(resolve => setTimeout(resolve, 2500));
+				this.generateFromArray(this.listView.deleteNode(value));
+			},
 			addNode(value) {
 				this.s.graph.addNode({
 					id: 'n' + this.nodesCount++,
 					label: value,
 					x: this.nodesCount,
-					y: Math.random() % 5,
+					y: 1,
 					size: 10,
 					color: '#D500F9'
 				});
@@ -46,21 +67,6 @@
 				}
 				this.s.refresh();
 			},
-			async deleteNode(value) {
-				this.s.graph.nodes().forEach(function(node) {
-					console.log(node.label);
-					if (node.label == value)
-						node.color = '#ff0000';
-				});
-				this.s.refresh();
-				await new Promise(resolve => setTimeout(resolve, 2500));
-				this.s.graph.nodes().forEach(function(node) {
-					console.log(node.label);
-					if (node.label == value)
-						node.color = '#000000';
-				});
-				this.s.refresh();
-			},
 			findNode(value) {
 				this.s.graph.nodes()[value].color = '#00E676'
 				this.s.refresh();
@@ -70,29 +76,40 @@
 			},
 			generateFromArray(array) {
 				this.s.kill();
+				this.s = new sigma({
+					graph: {
+						nodes: [],
+						edges: []
+					},
+					container: 'graph-container'
+				});
+				this.nodesCount = 0;
+				this.edgesCount = 0;
 				if (array.length > 0) {
+					let tmp='n'+this.nodesCount++;
 					this.s.graph.addNode({
-						id: 'n' + this.nodesCount++,
+						id: tmp,
 						label: array[0],
 						x: this.nodesCount,
-						y: Math.random() % 5,
-						size: 5,
+						y: 1,
+						size: 10,
 						color: '#D500F9'
 					});
 				}
 				for (let i = 1; i < array.length; i++) {
-					addNode(array[i]);
+					this.addNode(array[i]);
 				}
 			}
 		},
         mounted() {
+			this.listView = new ListView();
 			this.s = new sigma({
 				graph: {
 					nodes: [],
 					edges: []
 				},
 				container: 'graph-container'
-			})
+			});
         }
     };
 </script>
