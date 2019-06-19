@@ -29,19 +29,19 @@
 		methods: {
 			sort1() {
 				let resArray = []; // ! Return sorted array here
-				addSortedFromArray(resArray);
+				this.addSortedFromArray(resArray);
 			},
 			sort2() {
 				let resArray = []; // ! Return sorted array here
-				addSortedFromArray(resArray);
+				this.addSortedFromArray(resArray);
 			},
 			sort3() {
 				let resArray = []; // ! Return sorted array here
-				addSortedFromArray(resArray);
+				this.addSortedFromArray(resArray);
 			},
 			sort4() {
 				let resArray = []; // ! Return sorted array here
-				addSortedFromArray(resArray);
+				this.addSortedFromArray(resArray);
 			},
 			regenerate(value) {
 				this.sorted.clearList();
