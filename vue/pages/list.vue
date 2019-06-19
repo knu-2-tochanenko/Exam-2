@@ -34,13 +34,9 @@
 				this.generateFromArray(this.listView.addNode_end(value));
 			},
 			addNode_index(value) {
-				let index = this.listView.searchNode(value);
-				if (index != undefined && index != -1) {
-					let afterValue = prompt("After value:", 1);
-					let result=this.listView.addNode_after(value, afterValue);
-					console.log(result);
-					this.generateFromArray(result);
-				}
+				let afterValue = prompt("After value:", 1);
+				let result=this.listView.addNode_after(value, afterValue);
+				this.generateFromArray(result);
 			},
 			async deleteNode(value) {
 				let index = this.listView.searchNode(value);
