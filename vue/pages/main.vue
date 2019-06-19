@@ -26,7 +26,7 @@
 
 <script>
     module.exports = {
-        name: "main"
+        name: "mainpage"
     };
 </script>
 
