@@ -29,6 +29,10 @@ class List {
         return this._root;
     }
 
+    clearList() {
+        this._root = null;
+    }
+
     insertKey_begin(newKey) {
         let tmp = new ListNode(newKey, null);
         tmp.next = this._root;

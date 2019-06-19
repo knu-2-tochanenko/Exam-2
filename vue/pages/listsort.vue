@@ -4,12 +4,11 @@
             <div id="graph-container"></div>
         </div>
 		<input v-model="nodevalue" type="number">
-		<button @click="addNode_begin(nodevalue)">Add to Begin</button>
-		<button @click="addNode_end(nodevalue)">Add to End</button>
-		<button @click="addNode_index(nodevalue)">Add after Index</button>
-		<button @click="deleteNode(nodevalue)">Delete</button>
-		<button @click="findNode(nodevalue)">Find</button>
-		<button @click="changeNode(nodevalue)" disabled>Change</button>
+		<button @click="regenerate(nodevalue)">Generate</button>
+		<button @click="sort1">Sort1</button> <!-- // ! Change Sort name -->
+		<button @click="sort2">Sort2</button> <!-- // ! Change Sort name -->
+		<button @click="sort3">Sort3</button> <!-- // ! Change Sort name -->
+		<button @click="sort4">Sort4</button> <!-- // ! Change Sort name -->
     </div>
 </template>
 
@@ -21,41 +20,46 @@
 				nodesCount: 0,
 				edgesCount: 0,
 				s: null,
+				sorted: null,
 				nodevalue: "1",
-      			listView: null
+				listView: null,
+				sortedListView: null
 			}
 		},
 		methods: {
-			addNode_begin(value) {
-				this.generateFromArray(this.listView.addNode_begin(value));
+			sort1() {
+				let resArray = []; // ! Return sorted array here
+				addSortedFromArray(resArray);
 			},
-			addNode_end(value) {
+			sort2() {
+				let resArray = []; // ! Return sorted array here
+				addSortedFromArray(resArray);
+			},
+			sort3() {
+				let resArray = []; // ! Return sorted array here
+				addSortedFromArray(resArray);
+			},
+			sort4() {
+				let resArray = []; // ! Return sorted array here
+				addSortedFromArray(resArray);
+			},
+			regenerate(value) {
+				this.sorted.clearList();
+				let count = parseInt(this.nodevalue);
+				for (let i = 0; i < count; i++) {
+					let newVal = Math.random() % 100;
+					this.addSingleNode(newVal);
+				}
+			},
+			addSingleNode(value) {
 				this.generateFromArray(this.listView.addNode_end(value));
 			},
-			async addNode_index(value) {
-				let afterValue = prompt("After value:", 1);
-				let result = this.listView.addNode_after(value, afterValue);
-				let index = this.listView.searchNode(afterValue);
-				if (index != undefined && index != -1) {
-					await this.findNode(afterValue);
-					this.generateFromArray(result);
-				}
-			},
-			async deleteNode(value) {
-				let index = this.listView.searchNode(value);
-				if (index != undefined && index != -1) {
-					this.s.graph.nodes()[index].color = '#ff0000';
-					this.s.refresh();
-					await new Promise(resolve => setTimeout(resolve, 2500));
-					this.generateFromArray(this.listView.deleteNode(value));
-				}
-			},
-			addNode(value) {
+			addNode(value, pos) {
 				this.s.graph.addNode({
 					id: 'n' + this.nodesCount++,
 					label: value,
 					x: this.nodesCount,
-					y: 1,
+					y: pos,
 					size: 10,
 					color: '#D500F9'
 				});
@@ -69,19 +73,6 @@
 					});
 				}
 				this.s.refresh();
-			},
-			async findNode(value) {
-				let index = this.listView.searchNode(value);
-				if (index != undefined && index != -1) {
-					this.s.graph.nodes()[index].color = '#00E676'
-					this.s.refresh();
-					await new Promise(resolve => setTimeout(resolve, 1000));
-					this.s.graph.nodes()[index].color = '#D500F9'
-					this.s.refresh();
-				}
-			},
-			changeNode(value) {
-				let newValue = parseInt(prompt("Enter new value", 1));
 			},
 			generateFromArray(array) {
 				this.s.kill();
@@ -107,7 +98,24 @@
 					this.s.refresh();
 				}
 				for (let i = 1; i < array.length; i++) {
-					this.addNode(array[i]);
+					this.addNode(array[i], 1);
+				}
+			},
+			addSortedFromArray(array) {
+				if (array.length > 0) {
+					let tmp='n'+this.nodesCount++;
+					this.s.graph.addNode({
+						id: tmp,
+						label: array[0],
+						x: this.nodesCount,
+						y: 3,
+						size: 10,
+						color: '#D500F9'
+					});
+					this.s.refresh();
+				}
+				for (let i = 1; i < array.length; i++) {
+					this.addNode(array[i], 3);
 				}
 			}
 		},
