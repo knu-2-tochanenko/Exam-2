@@ -10,8 +10,6 @@
 		<button @click="deleteNode(nodevalue)">Delete</button>
 		<button @click="findNode(nodevalue)">Find</button>
 		<button @click="changeNode(nodevalue)" disabled>Change</button>
-
-		<modal-window v-show="modalShow" @datapassed="passData"></modal-window>
     </div>
 </template>
 
@@ -24,18 +22,10 @@
 				edgesCount: 0,
 				s: null,
 				nodevalue: "1",
-      			listView: null,
-                modalShow: false
+      			listView: null
 			}
 		},
 		methods: {
-			async passData(value) {
-                // * Value has 4 fields which are accessable via value.param1 .. value.param4
-                // ! Use this.modalShow = true to show modal window
-                console.log(value);
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                this.modalShow = false;
-            },
 			addNode_begin(value) {
 				this.generateFromArray(this.listView.addNode_begin(value));
 			},
@@ -130,9 +120,6 @@
 				},
 				container: 'graph-container'
 			});
-        },
-        components: {
-            'modal-window': httpVueLoader('../components/modalWindow.vue')
         }
     };
 </script>
