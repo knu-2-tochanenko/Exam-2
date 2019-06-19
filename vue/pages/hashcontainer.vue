@@ -42,6 +42,11 @@
                 if (foundNode != null)
                     foundNode.classList.add('selectedTd');
             },
+            uncolorNode(index) {
+                let foundNode = document.getElementById('node' + index);
+                if (foundNode != null)
+                    foundNode.classList.remove('selectedTd');
+            },
             renderTable(array) {
                 this.$refs.hashTable.innerHTML = "";
                 let len = array.length;
