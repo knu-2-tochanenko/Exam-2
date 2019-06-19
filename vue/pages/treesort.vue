@@ -7,7 +7,7 @@
 
 <script>
     module.exports = {
-        name: "tree-container",
+        name: "tree-sort",
         data: function() {
             return {
                 modalShow: false

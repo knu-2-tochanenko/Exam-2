@@ -14,7 +14,7 @@
 
 <script>
     module.exports = {
-        name: "hash",
+        name: "hash-set",
         data: function() {
             return {
                 hashsize : "1",

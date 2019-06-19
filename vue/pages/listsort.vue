@@ -17,7 +17,7 @@
 
 <script>
     module.exports = {
-		name: "list-set",
+		name: "list-sort",
 		data: function() {
 			return {
 				nodesCount: 0,

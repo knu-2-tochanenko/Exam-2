@@ -1,6 +1,5 @@
 <template>
     <div>
-        Листы
 		<div id="container">
             <div id="graph-container"></div>
         </div>
@@ -18,7 +17,7 @@
 
 <script>
     module.exports = {
-		name: "list",
+		name: "list-container",
 		data: function() {
 			return {
 				nodesCount: 0,
@@ -32,6 +31,7 @@
 		methods: {
 			async passData(value) {
                 // * Value has 4 fields which are accessable via value.param1 .. value.param4
+                // ! Use this.modalShow = true to show modal window
                 console.log(value);
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 this.modalShow = false;
@@ -130,6 +130,9 @@
 				},
 				container: 'graph-container'
 			});
+        },
+        components: {
+            'modal-window': httpVueLoader('../components/modalWindow.vue')
         }
     };
 </script>

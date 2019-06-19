@@ -1,7 +1,6 @@
 <template>
     <div>
         <side-menu-container></side-menu-container>
-        Контейнер
     </div>
 </template>
 

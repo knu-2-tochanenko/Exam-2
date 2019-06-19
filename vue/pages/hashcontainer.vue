@@ -14,7 +14,7 @@
 
 <script>
     module.exports = {
-        name: "hash",
+        name: "hash-container",
         data: function() {
             return {
                 hashsize : "1",
@@ -26,6 +26,7 @@
         methods: {
             async passData(value) {
                 // * Value has 4 fields which are accessable via value.param1 .. value.param4
+                // ! Use this.modalShow = true to show modal window
                 console.log(value);
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 this.modalShow = false;
@@ -67,6 +68,9 @@
         },
         mounted() {
             this.initHash();
+        },
+        components: {
+            'modal-window': httpVueLoader('../components/modalWindow.vue')
         }
     };
 </script>

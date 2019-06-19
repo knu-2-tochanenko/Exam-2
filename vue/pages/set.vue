@@ -1,7 +1,6 @@
 <template>
     <div>
         <side-menu-set></side-menu-set>
-        Set
     </div>
 </template>
 
