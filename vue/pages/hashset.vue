@@ -7,6 +7,8 @@
 		<button @click="colorNode(hashvalue)">Find</button>
 
         <table ref="hashTable"></table>
+
+        <modal-window v-show="modalShow" @datapassed="passData"></modal-window>
     </div>
 </template>
 
@@ -17,12 +19,20 @@
             return {
                 hashsize : "1",
                 hashvalue : "1",
-                cuckoo: null
+                cuckoo: null,
+                modalShow: false
             }
         },
         methods: {
+            async passData(value) {
+                // * Value has 4 fields which are accessable via value.param1 .. value.param4
+                // ! Use this.modalShow = true to show modal window
+                console.log(value);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                this.modalShow = false;
+            },
             addKey() {
-
+                this.modalShow = true;
             },
             findKey(value) {
                 
@@ -58,6 +68,9 @@
         },
         mounted() {
             this.initHash();
+        },
+        components: {
+            'modal-window': httpVueLoader('../components/modalWindow.vue')
         }
     };
 </script>
