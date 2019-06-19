@@ -5,10 +5,10 @@
         </div>
 		<input v-model="nodevalue" type="number">
 		<button @click="regenerate(nodevalue)">Generate</button>
-		<button @click="sort1">Sort1</button> <!-- // ! Change Sort name -->
-		<button @click="sort2">Sort2</button> <!-- // ! Change Sort name -->
-		<button @click="sort3">Sort3</button> <!-- // ! Change Sort name -->
-		<button @click="sort4">Sort4</button> <!-- // ! Change Sort name -->
+		<button @click="sort1">Inset Sort</button> <!-- // ! Change Sort name -->
+		<button @click="sort2">Quick Sort</button> <!-- // ! Change Sort name -->
+		<button @click="sort3">Heap Sort</button> <!-- // ! Change Sort name -->
+		<button @click="sort4">Bucket Sort</button> <!-- // ! Change Sort name -->
     </div>
 </template>
 
