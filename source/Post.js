@@ -1,5 +1,4 @@
-//Посадові особи: міністерство, організація, підрозділ, співробітник
-class Subject {
+class Post {
     constructor(country, city, street, flat) {
         this._country = country;
         this._organization = city;
